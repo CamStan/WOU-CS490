@@ -35,6 +35,8 @@ const float yZeroG = 1437;
 const float yPosG = 1720;
 const float yNegG = 1152;
 
+const float pi = 3.1415926535897;
+
 // function prototypes
 float normalize(unsigned int, float, float, float);
 int isLevel(float, int);
@@ -84,8 +86,8 @@ int main(int argc, char* argv[]) {
 		xNorm = normalize(xValue, xZeroG, xPosG, xNegG);
 		yNorm = normalize(yValue, yZeroG, yPosG, yNegG);
 
-		//xLevel = level(xNorm, 10);
-		//yLevel = level(yNorm, 10);
+		//xLevel = isLevel(xNorm, 10);
+		//yLevel = isLevel(yNorm, 10);
 
 		// light yellow LED when both x and y are within 10%
 		if (isLevel(xNorm, 10) == 0 && isLevel(yNorm, 10) == 0)
@@ -132,5 +134,5 @@ float normalize(unsigned int reading, float middle, float max, float min) {
  * @return 0 if is level; 1 if not level
  */
 int isLevel(float norm, int degree) {
-	return fabsf(norm) < degree / 90.0 ? 0 : 1;
-} // end
+	return fabsf(asin(norm)) * (180/pi) < degree ? 0 : 1;
+} //end isLevel
