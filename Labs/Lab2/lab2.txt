@@ -31,7 +31,7 @@ Red_LED:
 
 5. For each data pin used in this lab (A0, A1, D7 and D8 on the Arduino numbers, labelled "Shield pin") trace them to the pins used by the Edison and list the pin number and any other functions (MUX) that these pins can be used for. Edison pin numbers are both "Linux" numbers (like 240) and GPIO Pin numbers (like U16_IO1.0)
 
-   Shield Pin: A0, Linux #: 200, GPIO #: U17_IO0.0, Functions: Analog input or digital I/O
-   Shield Pin: A1, Linux #: 201, GPIO #: U17_IO0.1, Functions: Analog input or digital I/O
-   Shield Pin: D7, Linux #: 223/255 GPIO #: U39_IO0.7/U34_IO0.7 , Functions: Digital I/O
-   Shield Pin: D8, Linux #: 224/256 GPIO #: U39_IO0.7/U34_IO1.0, Functions: Digital I/O
+   Shield Pin: A0, Linux #: 44, GPIO #: U17_IO0.0, Functions: Analog input or digital I/O
+   Shield Pin: A1, Linux #: 45, GPIO #: U17_IO0.1, Functions: Analog input or digital I/O
+   Shield Pin: D7, Linux #: 48 GPIO #: U39_IO0.7/U34_IO0.7, Functions: Digital I/O
+   Shield Pin: D8, Linux #: 49 GPIO #: U39_IO0.7/U34_IO1.0, Functions: Digital I/O
