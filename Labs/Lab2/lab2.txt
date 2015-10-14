@@ -1,0 +1,37 @@
+Cameron Stanavige
+CS490
+
+1. How much current is passing through the Red LED when it is lit up? See the example data sheets in the class repository: RED_LED.pdf and YELLOW_LED.pdf
+Red_LED:
+
+    First band = First digit = Orange = 3
+    Second band = Second digit = Orange = 3
+    Third band = Multiplier = Brown = x10^1
+    
+    Resistor = 330 ohms
+   
+    Fourth band = Tolerance = Silver = 5%
+    330 +- 5% = 313.5-346.5 ohms
+    
+    V = 3.3V
+    
+    I = 3.3/330 = 10 mA
+
+2. How much below the maximum allowed current for this Arduino shield pin is this? Explain.
+
+    The maximum allowed current for the Arduino shield pins is 40mA, so this is 30mA below the maximum allowed current.
+
+3. What would happen if the resistor was accidentally replaced with one having a value of 33 Ω? i.e. orange-orange-black instead of orange-orange-brown?
+
+    Then there would be 100 mAmps flowing to the shield pin which would cause the pin to burn out or would trip a fuse after getting really hot.
+
+4. The ADXL330 board is powered with 3.3 volts. Would anything bad happen if we powered it with 5V by moving the jumper wire just one pin over? Explain using values from the datasheet.
+
+    On page 12, it states that the ADXL330 is tested and specified at voltages as low as 1.8V and as high as 3.6V. Changes to 5V would probably have some undesired affects, such as faulty data but it shouldn't damage the device as according to page 4, the absolute maximum supply voltage is 7V. However, it recommends not operating above the specified range of 1.8V-3.6V.
+
+5. For each data pin used in this lab (A0, A1, D7 and D8 on the Arduino numbers, labelled "Shield pin") trace them to the pins used by the Edison and list the pin number and any other functions (MUX) that these pins can be used for. Edison pin numbers are both "Linux" numbers (like 240) and GPIO Pin numbers (like U16_IO1.0)
+
+   Shield Pin: A0, Linux #: 200, GPIO #: U17_IO0.0, Functions: Analog input or digital I/O
+   Shield Pin: A1, Linux #: 201, GPIO #: U17_IO0.1, Functions: Analog input or digital I/O
+   Shield Pin: D7, Linux #: 223/255 GPIO #: U39_IO0.7/U34_IO0.7 , Functions: Digital I/O
+   Shield Pin: D8, Linux #: 224/256 GPIO #: U39_IO0.7/U34_IO1.0, Functions: Digital I/O
