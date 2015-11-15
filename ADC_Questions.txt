@@ -1,0 +1,88 @@
+Cameron Stanavige
+CS490
+
+For the following questions, assume:
+
+	- A 12-bit successive approximation analog-to-digital converter (SAR A/D), just like in the Edison Arduino expansion board
+	- running via a 1 MHz clock
+	- capable of measuring 6 channels through a multiplexer
+	- using an analog reference, Vref, of 3.3V relative to a 0V ground
+
+1.  A measurement of 0V corresponds to what digital (binary) value?  Write your answer in binary, hexadecimal and decimal.
+    binary: 0000 0000 0000
+    hexadecimal: 00h
+    decimal: 0
+
+2. A measurement of 3.3V corresponds to what digital (binary) value?  Write your answer in binary, hexadecimal and decimal.
+    binary: 1111 1111 1111
+    hexadecimal: 0xFFF
+    decimal: 4095
+
+
+3. A measurement of 5V corresponds to what digital (binary) value?  Write your answer in binary, hexadecimal and decimal.
+    binary: 1111 1111 1111
+    hexadecimal: 0xFFF
+    decimal: 4095
+
+
+
+4. What is the resolution of this A/D converter?  i.e. what is the difference in volts, between measurements that differ by only 1 bit?
+    #volts / 2^(# of bits)
+    
+    (3.3 - 0) / (2^(12)-1)
+    .80586mV
+
+
+5. Walk through a complete measurement for a Vin of 1.28 V.  Show all steps leading to the measured binary value.
+             1.28V
+            
+    0x800 -> 1.65V > val (times value from #4)
+    0x400 -> .825V < val
+    0x600 -> 1.2378V < val
+    0x700 -> 1.444V > val
+    0x680 -> 1.34095V > val
+    0x640 -> 1.2893V > val
+    0x620 -> 1.26359V < val
+    0x630 -> 1.27648V < val
+    0x638 -> 1.2829V > val
+    0x634 -> 1.2797V < val
+    0x636 -> 1.2813V > val
+    0x635 -> 1.2805V > val   
+   
+    Answer:
+    0x634 -> 1.2797V (1588 int)
+    error of .293V
+
+
+6. How many clock cycles did question 5 take?  How many seconds is this?
+
+    each bit takes a clock cycle
+    T = 1/f     1/1E6
+    12microseconds
+
+
+7. What is the error associated with your answer from question 5?
+
+    .293mV
+
+
+8. If that error was in measuring acceleration as in Lab 2, what is the error in "gee"?
+
+    
+
+
+9. If we wanted to make A/D measurements on 6 channels (like measuring X,Y,Z axes for two different sensors), how long would it take to make all 6 measurements?  
+
+    6 x 12microseconds = 72 microseconds
+
+
+10. Texas Instruments' PCM1802 stereo analog-to-digital converter measures 2 analog signals (Left and Right audio from a microphone for example) with a resolution of 24 bits.  If a pre-amplifier is used to amplify the small voltages produced by the microphone, the input voltage to the A/D is 2V peak to peak, meaning it goes from -2V to +2V. Sample rate is 96kHz.   What is the resolution of this A/D in volts?  What is this in terms of the "quantization dynamic range" in decibels?  Dynamic range can be calculated as 20 * log_10(Vmax/deltaV), where Vmax is the maximum range of measurement and deltaV is the smallest voltage measurable.  If you know anything about audio, is that good?
+
+    loudest thing can measure to the softest thing
+    20 log10(difference)
+    144 dB
+    
+    human ear can do difference of 130 dB
+
+
+
