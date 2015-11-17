@@ -46,10 +46,10 @@ using namespace std;
 
 // gyroscope constants
 #define CTRL_REG1_G   0x20
-#define CTRL_REG2_G   0x21
-#define CTRL_REG3_G   0x22
-#define CTRL_REG4_G   0x23
-#define CTRL_REG5_G   0x24
+//#define CTRL_REG2_G   0x21
+//#define CTRL_REG3_G   0x22
+//#define CTRL_REG4_G   0x23
+//#define CTRL_REG5_G   0x24
 #define OUT_X_L_G	  0x28
 #define OUT_X_H_G	  0x29
 #define OUT_Y_L_G	  0x2A
@@ -149,20 +149,22 @@ int main(int argc, char* argv[]) {
 
 	//button setups
 
+	Buttons.Buttons = 0xFF;
+
 	// up_button
-	button_Up = new mraa::Gpio(47, true, true);
+	button_Up = new mraa::Gpio(PIN_UP, true, true);
 	button_Up->dir(mraa::DIR_IN);
 
 	button_Up->isr(mraa::EDGE_BOTH, &interrupt_Up, NULL);
 
 	// down_button
-	button_Down = new mraa::Gpio(44, true, true);
+	button_Down = new mraa::Gpio(PIN_DOWN, true, true);
 	button_Down->dir(mraa::DIR_IN);
 
 	button_Down->isr(mraa::EDGE_BOTH, &interrupt_Down, NULL);
 
 	// select button
-	button_Select = new mraa::Gpio(48, true, true);
+	button_Select = new mraa::Gpio(PIN_SELECT, true, true);
 	button_Select->dir(mraa::DIR_IN);
 
 	button_Select->isr(mraa::EDGE_BOTH, &interrupt_Select, NULL);
